@@ -19,6 +19,25 @@ app.get('*', (req, res) => {
 
 app.use('/api/v1', tasksRoutes);
 
+// Serve front end
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '/public')));
+
+	app.get('*', (_, res) => {
+		const options = {
+			root: path.join(__dirname, '/public'),
+			dotfiles: 'allow',
+		};
+		res.sendFile('index.html', options);
+	});
+} else {
+	// Routes || Endpoint
+	app.get('/', (req, res) => {
+		res.send('Hello WORLD');
+	});
+}
+
 app.use(notFound);
 app.use(errorHandler);
 
@@ -33,4 +52,6 @@ const start = async () => {
 };
 
 start();
-module.exports = app;
+module.exports = (req, res) => {
+	app(req, res);
+};
