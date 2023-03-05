@@ -8,14 +8,14 @@ const errorHandler = require('./middleware/errorHandlers');
 const port = process.env.PORT || 9001;
 
 // Middlewares
-// app.use(express.static('./public'));
+app.use(express.static('public'));
 app.use(express.json());
 
 //Route Middlewares
 
-app.get('/', (req, res) => {
-	res.sendFile(__dirname, './public/index.html');
-});
+// app.get('/', (req, res) => {
+// 	res.sendFile(__dirname, './public/index.html');
+// });
 
 app.use('/api/v1', tasksRoutes);
 
