@@ -13,8 +13,8 @@ app.use(express.json());
 
 //Route Middlewares
 
-app.get('/', (req, res) => {
-	res.sendFile(index.html, { root: path.join(__dirname, 'public') });
+app.get('*', (req, res) => {
+	res.sendFile(index.html, { root: path.join(__dirname, '/public') });
 });
 
 app.use('/api/v1', tasksRoutes);
