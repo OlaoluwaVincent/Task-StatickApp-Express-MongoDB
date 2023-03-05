@@ -7,7 +7,7 @@ const tasksRoutes = require('./routes/tasks');
 const connectDB = require('./db/connect');
 const notFound = require('./middleware/notfound');
 const errorHandler = require('./middleware/errorHandlers');
-const port = process.env.PORT || 9001;
+const port = process.env.PORT || 9004;
 
 // Middlewares
 app.use(express.static('public'));
