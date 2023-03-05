@@ -15,10 +15,6 @@ app.use(express.json());
 
 //Route Middlewares
 
-app.get('*', (req, res) => {
-	res.sendFile('index.html', { root: __dirname + '/public' });
-});
-
 app.use('/api/v1', tasksRoutes);
 
 // Serve front end
@@ -26,13 +22,13 @@ app.use('/api/v1', tasksRoutes);
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, '/public')));
 
-	app.get('*', (_, res) => {
-		const options = {
-			root: path.join(__dirname, '/public'),
-			dotfiles: 'allow',
-		};
-		res.sendFile('index.html', options);
-	});
+	// app.get('*', (_, res) => {
+	// 	const options = {
+	// 		root: path.join(__dirname, '/public'),
+	// 		dotfiles: 'allow',
+	// 	};
+	// 	res.sendFile('index.html', options);
+	// });
 } else {
 	// Routes || Endpoint
 	app.get('/', (req, res) => {
